@@ -1,11 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-import {Button} from 'react-bootstrap'
+import Header from './Header'
+import {BrowserRouter,Route, Routes} from 'react-router-dom'
+import Login from './Login'
+import Register from './Register'
+import AddProduct from './AddProduct'
+import UpdateProduct from './UpdateProduct'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <BrowserRouter>
+      <Header />  
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/add" element={<AddProduct />} />
+        <Route path="/update" element={<UpdateProduct />} />
+        <Route path="/" element={<h1>Home</h1>} />
+      </Routes>
+      </BrowserRouter>
+      
+
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -19,7 +35,7 @@ function App() {
           Learn React
         </a>
         <Button>I-Tech</Button>
-      </header>
+      </header> */}
     </div>
   );
 }

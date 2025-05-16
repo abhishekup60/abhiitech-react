@@ -1,41 +1,26 @@
 import './App.css';
-import Header from './Header'
 import {BrowserRouter,Route, Routes} from 'react-router-dom'
 import Login from './Login'
 import Register from './Register'
+import Dashboard from './Dashboard'
 import AddProduct from './AddProduct'
-import UpdateProduct from './UpdateProduct'
+import ProductList from './ProductList'
+import EditProduct from './EditProduct'
+import ProtectedRoute from './ProtectedRoute'
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Header />  
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/add" element={<AddProduct />} />
-        <Route path="/update" element={<UpdateProduct />} />
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/register" element={<Register />} />        
+        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="product/add" element={<ProtectedRoute><AddProduct /></ProtectedRoute>} />
+        <Route path="/product" element={<ProtectedRoute><ProductList /></ProtectedRoute>} />
+        <Route path="product/edit/:id" element={<ProtectedRoute><EditProduct /></ProtectedRoute>} />
       </Routes>
       </BrowserRouter>
-      
-
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button>I-Tech</Button>
-      </header> */}
     </div>
   );
 }

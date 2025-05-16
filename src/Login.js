@@ -5,8 +5,8 @@ import Header from './Header';
 function Login(){
       const navigate = useNavigate();
       useEffect(() => {
-        if (localStorage.getItem("user-info")) {
-          navigate("/dashboard");
+        if (localStorage.getItem("authToken")) {
+          navigate("/");
         }
       });
     const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ function Login(){
             // console.log(result);
             localStorage.setItem('authToken', JSON.stringify(result.data.token));
             localStorage.setItem("user_name", JSON.stringify(result.data.name));
-            navigate("/dashboard");
+            navigate("/");
         }
         catch (error) {
         console.error("Error:", error);

@@ -4,11 +4,28 @@ import {Link, useNavigate} from 'react-router-dom'
 function Header() {
     const username = JSON.parse(localStorage.getItem('user_name'));
     const navigate = useNavigate();
-    
+    const token = JSON.parse(localStorage.getItem('authToken'));
+
     function logout()
     {
-        localStorage.clear();
-        navigate("/login");
+        try
+        {
+            fetch("http://localhost:8000/api/logout", {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${token}`,  
+            }
+            });
+            localStorage.clear();
+            navigate("/login");
+        }
+        catch (error) {
+        console.error("Error:", error);
+        }
+        finally {
+        console.log("finally");
+        }
+
     }
   return (
     <header>
